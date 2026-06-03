@@ -41,12 +41,12 @@ export default function DashboardLayout({
       <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0">
         <div className="flex flex-col">
           {/* Brand Logo */}
-          <div className="h-16 flex items-center px-6 border-b border-slate-800 gap-3">
-            <Beaker className="w-6 h-6 text-indigo-400" />
+          <Link href="/" className="h-16 flex items-center px-6 border-b border-slate-800 gap-3 group hover:opacity-90 transition-opacity">
+            <Beaker className="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform" />
             <span className="font-bold text-lg tracking-wider bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">
               MEDCHEM
             </span>
-          </div>
+          </Link>
 
           {/* User Info Card */}
           <div className="p-4 mx-3 my-4 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-3">

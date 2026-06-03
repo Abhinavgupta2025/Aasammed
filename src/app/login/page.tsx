@@ -84,12 +84,13 @@ export default function LoginPage() {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       <div className="w-full max-w-md">
-        {/* Brand Header */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-14 h-14 bg-indigo-950 border border-indigo-500/30 rounded-xl flex items-center justify-center mb-3 shadow-lg shadow-indigo-500/10">
-            <Beaker className="w-8 h-8 text-indigo-400" />
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-100">MedChem Inventory</h1>
+          <Link href="/" className="flex flex-col items-center group">
+            <div className="w-14 h-14 bg-indigo-950 border border-indigo-500/30 rounded-xl flex items-center justify-center mb-3 shadow-lg shadow-indigo-500/10 group-hover:border-indigo-500/50 transition-all duration-200">
+              <Beaker className="w-8 h-8 text-indigo-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-slate-100 group-hover:text-indigo-400 transition-colors">MedChem Inventory</h1>
+          </Link>
           <p className="text-sm text-slate-400 mt-1">Inventory & Order Management System</p>
         </div>
 

@@ -106,12 +106,12 @@ export default async function Home() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-900/80 h-20">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-indigo-950 border border-indigo-500/20 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/10">
-              <Beaker className="w-5 h-5 text-indigo-400" />
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-10 h-10 bg-indigo-950 border border-indigo-500/20 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/10 group-hover:border-indigo-500/40 transition-colors">
+              <Beaker className="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-slate-100">MedChem Inventory</span>
-          </div>
+            <span className="text-xl font-bold tracking-tight text-slate-100 group-hover:text-indigo-400 transition-colors">MedChem Inventory</span>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-slate-400">
             <a href="#features" className="hover:text-indigo-400 transition-colors">Platform Features</a>
