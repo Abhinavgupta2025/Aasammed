@@ -89,7 +89,7 @@ export default function LoginPage() {
           <div className="w-14 h-14 bg-indigo-950 border border-indigo-500/30 rounded-xl flex items-center justify-center mb-3 shadow-lg shadow-indigo-500/10">
             <Beaker className="w-8 h-8 text-indigo-400" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">MedChem Inventory</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-100">MedChem Inventory</h1>
           <p className="text-sm text-slate-400 mt-1">Inventory & Order Management System</p>
         </div>
 

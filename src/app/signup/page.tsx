@@ -111,7 +111,7 @@ export default function SignupPage() {
             <div className="w-14 h-14 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center mb-3 shadow-lg group-hover:border-indigo-500/30 transition-all duration-200">
               <Beaker className="w-8 h-8 text-indigo-400" />
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">MedChem Inventory</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-slate-100 group-hover:text-indigo-400 transition-colors">MedChem Inventory</h1>
           </Link>
           <p className="text-sm text-slate-400 mt-1">Inventory & Order Management System</p>
         </div>

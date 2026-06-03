@@ -11,6 +11,7 @@ import {
   TO_BASE_FACTOR,
 } from "@/lib/units";
 import { AlertCircle, ShoppingCart } from "lucide-react";
+import toast from "react-hot-toast";
 
 interface QuantitySelectorProps {
   product: {
@@ -47,6 +48,15 @@ export default function QuantitySelector({ product, onAdd }: QuantitySelectorPro
   // Sync unit when baseUnit changes
   useEffect(() => {
     setSelectedUnit(baseUnit);
+    const parsed = parseFloat(quantityInput);
+    if (!isNaN(parsed) && parsed > 0) {
+      const baseQty = toBase(parsed, baseUnit);
+      if (baseQty > stockInBaseUnit) {
+        const maxVal = fromBase(stockInBaseUnit, baseUnit);
+        setQuantityInput(Number(maxVal.toFixed(5)).toString());
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [baseUnit]);
 
   // Derived Calculations
@@ -60,6 +70,48 @@ export default function QuantitySelector({ product, onAdd }: QuantitySelectorPro
 
   // Stock representation in selected unit
   const stockInSelectedUnit = fromBase(stockInBaseUnit, selectedUnit);
+
+  const handleQtyChange = (val: string) => {
+    if (val === "" || val === ".") {
+      setQuantityInput(val);
+      return;
+    }
+
+    const parsed = parseFloat(val);
+    if (isNaN(parsed)) {
+      setQuantityInput(val);
+      return;
+    }
+
+    if (parsed < 0) {
+      setQuantityInput("0");
+      return;
+    }
+
+    const baseQty = toBase(parsed, selectedUnit);
+    if (baseQty > stockInBaseUnit) {
+      const maxVal = fromBase(stockInBaseUnit, selectedUnit);
+      const cappedString = Number(maxVal.toFixed(5)).toString();
+      setQuantityInput(cappedString);
+      toast.error(`Quantity capped at maximum available stock: ${cappedString} ${selectedUnit}`);
+    } else {
+      setQuantityInput(val);
+    }
+  };
+
+  const handleUnitChange = (newUnit: Unit) => {
+    setSelectedUnit(newUnit);
+    const parsed = parseFloat(quantityInput);
+    if (!isNaN(parsed) && parsed > 0) {
+      const baseQty = toBase(parsed, newUnit);
+      if (baseQty > stockInBaseUnit) {
+        const maxVal = fromBase(stockInBaseUnit, newUnit);
+        const cappedString = Number(maxVal.toFixed(5)).toString();
+        setQuantityInput(cappedString);
+        toast.error(`Quantity capped at maximum available stock: ${cappedString} ${newUnit}`);
+      }
+    }
+  };
 
   const handleAdd = () => {
     if (!isValidQty || isInsufficientStock) return;
@@ -80,14 +132,14 @@ export default function QuantitySelector({ product, onAdd }: QuantitySelectorPro
             min="0"
             step="any"
             value={quantityInput}
-            onChange={(e) => setQuantityInput(e.target.value)}
+            onChange={(e) => handleQtyChange(e.target.value)}
             placeholder="0.00"
             className="flex-1 bg-slate-950 border border-slate-800 focus:border-primary rounded-xl py-3 px-4 font-semibold font-mono text-slate-200 focus:outline-none transition-colors"
           />
           
           <select
             value={selectedUnit}
-            onChange={(e) => setSelectedUnit(e.target.value as Unit)}
+            onChange={(e) => handleUnitChange(e.target.value as Unit)}
             className="bg-slate-950 border border-slate-800 focus:border-primary rounded-xl py-3 px-4 font-semibold text-slate-200 focus:outline-none transition-colors"
           >
             {compatibleUnits.map((u) => (
